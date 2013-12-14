@@ -3,8 +3,7 @@ save17kapk2txt
 
 将17k下载的apk中的文章保存到一个txt中
 
-1、下载apk；
-2、改扩展名为zip，解压；
+1、下载apk；2、改扩展名为zip，解压；
 3、进入assets目录，解压文件夹内的content.zip，解压后的content目录下有个“xxxxxx.in”文件；
 4、假设content目录路径为：C:\single_117302_chineseall_v1.0_release.zip\assets\content\；
 5、17k.php，第三行；
