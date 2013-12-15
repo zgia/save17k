@@ -1,10 +1,23 @@
 <?php
 
+error_reporting(E_ALL);
+
+include('libs/functions.php');
+
 save17kAPK2Txt('/path/to/apk/assets/content/', '1234567890');
 
 function save17kAPK2Txt($dir, $index)
 {
     $txtFile = $dir . $index . '.txt';
+    if (!save2Txt($txtFile))
+    {
+        return false;
+    }
+    if (empty($index))
+    {
+        return false;
+    }
+
     $indexFile = $dir . $index . '.in';
     $indexContent = json_decode(file_get_contents($indexFile));
 
@@ -24,25 +37,4 @@ function save17kAPK2Txt($dir, $index)
         }
         save2Txt($txtFile, "\n\n");
     }
-}
-
-function save2Txt($path, $cotent = '')
-{
-    if (empty($cotent))
-    {
-        return false;
-    }
-
-    if ($handle = fopen($path, 'a+'))
-    {
-        flock($handle, LOCK_EX);
-        $rs = fputs($handle, $cotent);
-        flock($handle, LOCK_UN);
-        fclose($handle);
-        if ($rs !== false)
-        {
-            return true;
-        }
-    }
-    return false;
 }
